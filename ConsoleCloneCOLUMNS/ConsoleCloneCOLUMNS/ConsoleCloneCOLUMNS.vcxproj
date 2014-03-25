@@ -76,6 +76,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseStage.cpp" />
+    <ClCompile Include="Columns.cpp" />
+    <ClCompile Include="ControlStage.cpp" />
+    <ClCompile Include="Jewel.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="ViewStage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseStage.h" />
+    <ClInclude Include="Columns.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ControlStage.h" />
+    <ClInclude Include="Jewel.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="ViewStage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\HISTORY.md" />
+    <None Include="..\..\LICENSE.md" />
+    <None Include="..\..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,2 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="BaseStage.cpp" />
+    <ClCompile Include="ViewStage.cpp" />
+    <ClCompile Include="ControlStage.cpp" />
+    <ClCompile Include="Columns.cpp" />
+    <ClCompile Include="Jewel.cpp" />
+    <ClCompile Include="Random.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseStage.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ViewStage.h" />
+    <ClInclude Include="ControlStage.h" />
+    <ClInclude Include="Columns.h" />
+    <ClInclude Include="Jewel.h" />
+    <ClInclude Include="Random.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\HISTORY.md" />
+    <None Include="..\..\LICENSE.md" />
+    <None Include="..\..\README.md" />
+  </ItemGroup>
+</Project>
