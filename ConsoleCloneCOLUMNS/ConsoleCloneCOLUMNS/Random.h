@@ -2,16 +2,19 @@
 /*
 INCLUDE
 */
-
 #include "Common.h"
+#include "randC.h"
 
-class Random
-{
-private:
+
+/* makeCト 2014/3/28
+ランダムクラス-randCを継承
+
+備考:
+*/
+class Random:public randC{
 public:
-	Random();
-	~Random();
-
-	int getRand(int maxNum){ return rand() % maxNum; }	//npcのクラスの中に入れようか迷ったけど、今後メルセンヌ入れるから却下。ファイルわけておく
+	Random();				//デフォルトで設定用コンストラクタ
+	Random(int min,int max);//引数で設定用コンストラクタ
+	~Random();				//デストラクタ
 };
 

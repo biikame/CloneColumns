@@ -1,32 +1,55 @@
 #include "Jewel.h"
-#include "Random.h"
 
-Jewel::Jewel():
-jewelSetNum(defDewelNum), jewelNum(defJewelNum)
-{
-	jewelArray = new int[jewelSetNum];
+/* makeCト 2014/3/28
+コンストラクタ
+引数:無し
+戻り値:無し
+備考:
+*/
+CJewel::CJewel(){
+}
+
+/* makeCト 2014/3/28
+デストラクタ
+引数:無し
+戻り値:無し
+備考:
+*/
+CJewel::~CJewel(){
 }
 
 
-Jewel::Jewel(int num):
-jewelSetNum(num), jewelNum(defJewelNum)
-{
-	jewelArray = new int[jewelSetNum];
-}
+/*	makeCト 2014/3/28
+宝石の色を設定する
 
-
-Jewel::~Jewel()
-{
-	delete[] jewelArray;
-}
-
-
-void Jewel::initJewelArray()
-{
-	Random random;
-
-	for (int i = 0; i < jewelSetNum; i++)
-	{
-		jewelArray[jewelSetNum] = random.getRand(jewelNum);
+引数:
+	int setColor
+戻り値:無し
+備考:
+*/
+void CJewel::setJewelColor(int setColor){
+	if (RED <= setColor && setColor <= PERPLE){
+		color = (JEWELDATA)setColor;
 	}
+	else{
+		throw "setJewelColor:無い色の宝石をセットしようとしました";
+	}
+}
+
+
+/*	makeCト 2014/3/28
+宝石の色を取得する
+
+引数:無し
+戻り値:無し
+備考:
+*/
+int CJewel::getJewelColor(){
+	if (RED <= color && color <= PERPLE){
+		return (int)color;
+	}
+	else{
+		throw "getJewelColor:無い色の宝石をゲットしようとしました";
+	}
+	return -1;
 }
