@@ -27,6 +27,11 @@
     <ClInclude Include="randC.h" />
     <ClInclude Include="Random.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\HISTORY.md" />
+    <None Include="..\..\LICENSE.md" />
+    <None Include="..\..\README.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{53733DFC-ED01-479A-B32B-8712B0727956}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

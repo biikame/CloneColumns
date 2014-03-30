@@ -1,5 +1,5 @@
 ﻿#include "Random.h"
-
+using namespace MakeCto;
 
 /* makeCト 2014/3/28
 コンストラクタ
@@ -35,6 +35,5 @@ Random::Random(int min, int max) :randC(min,max){
 戻り値:無し
 備考:
 */
-Random::~Random()
-{
+Random::~Random(){
 }

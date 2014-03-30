@@ -3,41 +3,64 @@
 
 #include <iostream>
 #include <time.h>
+#include <conio.h>
+
+namespace MakeCto{
+	enum _ERR{
+		ERR = -1,
+	};
 
 
-enum defMax{
-	maxX = 99,
-	maxY = 99,
-};
+	enum defMax{
+		maxX = 99,
+		maxY = 99,
+	};
 
 
-enum defaultData{
+	enum defaultData{
 
-	defaultStageWidth = 8,
-	defaultStageHeight = 17,
+		defaultStageWidth = 8,
+		defaultStageHeight = 17,
 
-	defaultWidth = 6,
-	defaultHeight = 13,
+		defaultWidth = 6,
+		defaultHeight = 13,
 
-	defaultDropWidth = 1,
-	defaultDropHeight = 3,
+		defaultDropWidth = 1,
+		defaultDropHeight = 3,
 
-	defaultDammyHeight = 3,
-};
-
-
-enum StateData{
-	INIT,
-};
+		defaultDammyHeight = 3,
+	};
 
 
-enum randCData{
-	minRand = 0,
-	maxRand = 6,
-};
+	enum StateData{
+		INIT,
+		GAME,
+	};
 
-enum BLOCKDATA{
-	SPACE,
-	BLOCK,
 
-};
+	enum randCData{
+		minRand = 0,
+		maxRand = 6,
+	};
+
+
+	enum BLOCKDATA{
+		SPACE,
+		RED,
+		YELLOW,
+		GREEN,
+		BLUE,
+		ORANGE,
+		PERPLE,
+		BLOCK = 99,
+		ERROR = -1,
+	};
+
+	enum WAY{
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
+		NONE = -1,
+	};
+}

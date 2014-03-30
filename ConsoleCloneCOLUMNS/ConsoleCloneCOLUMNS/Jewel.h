@@ -1,37 +1,23 @@
 #pragma once
+#include "Common.h"
 
+namespace  MakeCto{
+	/*	makeCト 2014/3/28
+	宝石クラス
 
-/*	makeCト 2014/3/28
-宝石クラス
-
-備考:
+	備考:
 	宝石の色を持つだけのクラス
 	set getのみ
-*/
-class CJewel{
-private:
-	typedef enum _JEWELDATA{
-		RED,
-		YELLOW,
-		GREEN,
-		BLUE,
-		ORANGE,
-		PERPLE,
-	}JEWELDATA;
+	*/
+	class CJewel{
+	private:
+		BLOCKDATA color;													//宝石の色データ
+	public:
+		CJewel();
+		~CJewel();
 
-	JEWELDATA color;													//宝石の色データ
-public:
-	CJewel();
-	~CJewel();
+		void setJewelColor(BLOCKDATA setColor);	//宝石の色データをセット
+		BLOCKDATA getJewelColor();				//宝石の色データを取得
+	};
 
-	//書けないのか？　setJewelColorでの　=用に書いたけど使えないっぽい？引っ張った先のクラスでしか意味無い？mainとか
-	//CJewel& operator=(int argument){
-	//	color = (JEWELDATA)argument;
-	//	return *this;
-	//}
-	
-	
-	void setJewelColor(int setColor);	//宝石の色データをセット
-	int getJewelColor();				//宝石の色データを取得
-};
-
+}

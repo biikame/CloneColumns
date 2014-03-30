@@ -1,6 +1,5 @@
 #include "CDrop.h"
-
-
+using namespace MakeCto;
 /*	makeCト 2014/3/28
 コンストラクタ
 
@@ -15,11 +14,20 @@
 CDrop::CDrop() :
 x(0), y(0), dX(0), dY(0), dammyHeight(defaultDammyHeight),
 width(defaultDropWidth), height(defaultDropHeight),
+stageWidth(defaultStageWidth), stageHeight(defaultStageHeight),
 state(INIT), timer(0), dropNumber(defaultDropHeight){
-	drop = new CCell<int>(width, height);
+	
+	drop = new CCell<BLOCKDATA>(width, height);
 }
 
+CDrop::CDrop(int dropX,int dropY) :
+x(0), y(0), dX(0), dY(0), dammyHeight(defaultDammyHeight),
+width(dropX), height(dropY),
+stageWidth(defaultStageWidth), stageHeight(defaultStageHeight),
+state(INIT), timer(0), dropNumber(defaultDropHeight){
 
+	drop = new CCell<BLOCKDATA>(width, height);
+}
 /*	makeCト 2014/3/28
 デストラクタ
 
@@ -41,8 +49,14 @@ CDrop::~CDrop(){
 備考:
 	dropの配列データに宝石の色データを入れる
 */
-void CDrop::setDrop(int value,int num){
-	drop->set(0, num, value);
+void CDrop::setDrop(int x, int y, BLOCKDATA value){
+
+	if (0 <= x && x <= width && 0 <= y && y <= height){
+		drop->set(x, y, value);
+	}
+	else{
+		throw "setDrop:x,yの値が範囲外を指しています。";
+	}
 }
 
 
@@ -52,13 +66,13 @@ void CDrop::setDrop(int value,int num){
 引数:
 戻り値:無し
 備考:
-	xデータは中間座標を入れる
-	yデータだけは、可変しても位置は変わらない
 */
-void CDrop::setPosition(){
+void CDrop::setPosition(int x, int y){
+
 	//初期位置セット
-	setX(width / 2);
-	setY(dammyHeight);
+	setX(x);
+	setY(y);
+	
 }
 
 
@@ -76,7 +90,7 @@ int CDrop::getdropNumber(){
 	else{
 		throw "dropNumberにおかしなデータが入っています";
 	}
-	return -1;
+	return ERR;
 }
 
 
@@ -88,8 +102,49 @@ int CDrop::getdropNumber(){
 備考:
 	CStageからdropは呼べないので関数で呼べるようにする
 */
-int CDrop::getdrop(int x, int y){
-	drop->get(x,y);
-	return -1;
+BLOCKDATA CDrop::getdrop(int x, int y){
+	int sizeX = drop->getSizeX();
+	int sizeY = drop->getSizeY();
+	if (0 <= x && x < sizeX && 0 <= y && y < sizeY){
+		return drop->get(x, y);
+	}
+	else {
+		throw "getdrop:drop配列の範囲外を指しています。オーバーランですよ？";
+	}
+	return ERROR;
 }
 
+
+/*	makeCト 2014/3/29
+落ち物が動けるかチェック
+
+引数:
+戻り値:WAY　WAY型の(上下左右)は入る
+備考:
+CStageからdropは呼べないので関数で呼べるようにする
+*/
+int CDrop::checkKey(int key){
+
+	dX = dY = 0;//差分初期化
+
+	switch (key){
+	case 'a':dX--; break;
+	case 'd':dX++; break;
+	case 'w':dY--; break;
+	case 's':dY++; break;
+	}
+	return 0;
+}
+
+
+/*	makeCト 2014/3/29
+落下物が自由落下する処理
+
+引数:
+戻り値:
+備考:
+	
+*/
+void CDrop::freeDrop(){
+	_sleep(300);
+}

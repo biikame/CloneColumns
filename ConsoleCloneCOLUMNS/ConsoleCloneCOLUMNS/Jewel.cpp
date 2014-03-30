@@ -1,4 +1,6 @@
 #include "Jewel.h"
+using namespace MakeCto;
+
 
 /* makeCト 2014/3/28
 コンストラクタ
@@ -27,9 +29,9 @@ CJewel::~CJewel(){
 戻り値:無し
 備考:
 */
-void CJewel::setJewelColor(int setColor){
+void CJewel::setJewelColor(BLOCKDATA setColor){
 	if (RED <= setColor && setColor <= PERPLE){
-		color = (JEWELDATA)setColor;
+		color = setColor;
 	}
 	else{
 		throw "setJewelColor:無い色の宝石をセットしようとしました";
@@ -44,12 +46,12 @@ void CJewel::setJewelColor(int setColor){
 戻り値:無し
 備考:
 */
-int CJewel::getJewelColor(){
+BLOCKDATA CJewel::getJewelColor(){
 	if (RED <= color && color <= PERPLE){
-		return (int)color;
+		return color;
 	}
 	else{
 		throw "getJewelColor:無い色の宝石をゲットしようとしました";
 	}
-	return -1;
+	return ERROR;
 }

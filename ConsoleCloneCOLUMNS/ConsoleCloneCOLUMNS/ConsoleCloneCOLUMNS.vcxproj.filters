@@ -17,4 +17,9 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="randC.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\HISTORY.md" />
+    <None Include="..\..\LICENSE.md" />
+    <None Include="..\..\README.md" />
+  </ItemGroup>
 </Project>

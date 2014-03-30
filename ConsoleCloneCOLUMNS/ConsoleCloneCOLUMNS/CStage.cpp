@@ -1,32 +1,33 @@
-#include "CStage.h"
+ï»¿#include "CStage.h"
+using namespace MakeCto;
 
+/*	makeCãƒˆ 2014/3/28
+ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-/*	makeCƒg 2014/3/28
-ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
-	stage‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹` ’†g‚ÍACCell<int>‚Ì”z—ñ‚ÌƒIƒuƒWƒFƒNƒg
-	Cdrop‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹` ’†g‚ÍACDrop‚ÌƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg
-	Cjewel‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹` ’†g‚ÍACJewel‚ÌƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg
-	random‚ÌƒIƒuƒWƒFƒNƒg‚ğ’è‹` ’†g‚ÍARandom‚ÌƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	stageã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾© ä¸­èº«ã¯ã€CCell<int>ã®é…åˆ—ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	Cdropã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾© ä¸­èº«ã¯ã€CDropã®ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	Cjewelã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾© ä¸­èº«ã¯ã€CJewelã®ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	randomã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾© ä¸­èº«ã¯ã€Randomã®ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 */
-CStage::CStage(){
-	stage = new CCell<int>(defaultStageWidth, defaultStageHeight);
+CStage::CStage():
+firstX(0), firstY(0){
+	stage = new CCell<BLOCKDATA>(defaultStageWidth, defaultStageHeight);
 	Cdrop = new CDrop;
 	Cjewel = new CJewel;
-	random = new Random;
+	random = new Random(RED, PERPLE);
 }
 
 
-/*	makeCƒg 2014/3/28
-ƒfƒXƒgƒ‰ƒNƒ^
+/*	makeCãƒˆ 2014/3/28
+ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
-	ƒIƒuƒWƒFƒNƒg‚ğíœ
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 */
 CStage::~CStage(){
 	delete stage;
@@ -36,46 +37,49 @@ CStage::~CStage(){
 }
 
 
-/*	makeCƒg 2014/3/28
-—‰º•¨ƒIƒuƒWƒFƒNƒg‚ğ•óÎ‚ÌF‚ğæ‚Á‚ÄƒZƒbƒg
+/*	makeCãƒˆ 2014/3/28
+è½ä¸‹ç‰©ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®çŸ³ã®è‰²ã‚’å–ã£ã¦ã‚»ãƒƒãƒˆ
 
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
-	ƒ‰ƒ“ƒ_ƒ€‚Å•Ô‚Á‚Ä‚«‚½’l‚ğ•óÎ‚ÌF‚Æ‚µ‚ÄjewelƒNƒ‰ƒX‚Ìcolorƒf[ƒ^ƒƒ“ƒo‚ÉƒZƒbƒg‚µ‚ÄA
-	‚»‚ê‚ğæ“¾‚µ‚ÄƒZƒbƒg‚·‚é‚ğ3‰ñŒJ‚è•Ô‚·
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ãƒ©ãƒ³ãƒ€ãƒ ã§è¿”ã£ã¦ããŸå€¤ã‚’å®çŸ³ã®è‰²ã¨ã—ã¦jewelã‚¯ãƒ©ã‚¹ã®colorãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒã«ã‚»ãƒƒãƒˆã—ã¦ã€
+	ãã‚Œã‚’å–å¾—ã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹ã‚’3å›ç¹°ã‚Šè¿”ã™
 
-	CDrop‚Éƒ‰ƒ“ƒ_ƒ€‚Ì”z—ñ‚ğ“Š‚°‚Ä‚â‚ë‚¤‚©‚Æv‚Á‚½‚¯‚Ç‚àA‚Ç‚Á‚¿‚ªİŒv“I‚É‚¢‚¢‚©”»’f‚µ‚É‚­‚¢B
-	ˆê‰ƒf[ƒ^‚ğˆê‚Â‚Å“Š‚°‚ÄAÀ‘Ô‚ğì¬‚µ‚Ä‚¢‚é‚±‚±‚Åƒ‹[ƒv‚³‚¹‚é‚×‚«‚©‚È‚Ÿ[‚Æ
-	‚»‚µ‚½‚çg‚¢‚Ü‚í‚µs‚¯‚»‚¤‚¾‚µA‚Æ‚©A‚¢‚¢‚Â‚Â‚àCDrop‚ÅdropNumber‚½‚¹‚Ä‚é‚µc
+	CDropã«ãƒ©ãƒ³ãƒ€ãƒ ã®é…åˆ—ã‚’æŠ•ã’ã¦ã‚„ã‚ã†ã‹ã¨æ€ã£ãŸã‘ã©ã‚‚ã€ã©ã£ã¡ãŒè¨­è¨ˆçš„ã«ã„ã„ã‹åˆ¤æ–­ã—ã«ãã„ã€‚
+	ä¸€å¿œãƒ‡ãƒ¼ã‚¿ã‚’ä¸€ã¤ã§æŠ•ã’ã¦ã€å®Ÿæ…‹ã‚’ä½œæˆã—ã¦ã„ã‚‹ã“ã“ã§ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹ã¹ãã‹ãªããƒ¼ã¨
+	ãã—ãŸã‚‰ä½¿ã„ã¾ã‚ã—è¡Œã‘ãã†ã ã—ã€ã¨ã‹ã€ã„ã„ã¤ã¤ã‚‚CDropã§dropNumberæŒãŸã›ã¦ã‚‹ã—â€¦
 */
 void CStage::setDropOnJewel(){
 
 	int dropNum = Cdrop->getdropNumber();
 
-	for (int i = 0; i < dropNum; i++){
-		int numOfRand = random->getRand();
+	for (int y = 0; y < dropNum; y++){
+		BLOCKDATA numOfRand = (BLOCKDATA)random->getRand();
 		Cjewel->setJewelColor(numOfRand);
 
-		int jewelColor = Cjewel->getJewelColor();
-		Cdrop->setDrop(jewelColor, i);
+		BLOCKDATA jewelColor = (BLOCKDATA)Cjewel->getJewelColor();
+		Cdrop->setDrop(0,y,jewelColor);
 	}
 }
 
-/*	makeCƒg 2014/3/28
-ƒXƒe[ƒW‚ÉƒZƒbƒg‚·‚é
 
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
+/*	makeCãƒˆ 2014/3/28
+ã‚¹ãƒ†ãƒ¼ã‚¸ã«ã‚»ãƒƒãƒˆã™ã‚‹
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
 
 */
 void CStage::initStage(){
-	
-	for (int y = 0; y < stage->getSizeY(); y++){
-		for (int x = 0; x < stage->getSizeX(); x++){
-			if (x == 0 || x == (stage->getSizeX() - 1) ||
-				y == (stage->getSizeY() - 1)){
+	int width = stage->getSizeX();
+	int height = stage->getSizeY();
+
+	for (int y = 0; y < height; y++){
+		for (int x = 0; x < width; x++){
+			if (x == 0 || x == (width - 1) ||
+				y == (height - 1)){
 					stage->set(x, y, BLOCK);
 			}
 			else{
@@ -84,32 +88,261 @@ void CStage::initStage(){
 		}
 	}
 }
-/*	makeCƒg 2014/3/28
-—‰º•¨‚ğƒXƒe[ƒW‚ÉƒZƒbƒg‚·‚é
 
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
 
+/*	makeCãƒˆ 2014/3/28
+è½ä¸‹ç‰©ã‚’ã‚¹ãƒ†ãƒ¼ã‚¸ã«ã‚»ãƒƒãƒˆã™ã‚‹
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
 */
 void CStage::setDropOnStage(){
-	
+	int width = Cdrop->getWidth();
+	int height = Cdrop->getHeight();
+
+	for (int y = 0; y < height; y++){
+		for (int x = 0; x < width; x++){
+			BLOCKDATA drop = Cdrop->getdrop(x, y);
+			stage->set((x+firstX), (y+firstY), drop);
+		}
+	}
 }
 
-/*	makeCƒg 2014/3/28
-init‚Ü‚Æ‚ß 
 
-ˆø”:–³‚µ
-–ß‚è’l:–³‚µ
-”õl:
-	‚Ü‚Æ‚ß‚ÄŒÄ‚Ño‚·—p
+/*	makeCãƒˆ 2014/3/28
+initã¾ã¨ã‚ 
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ã¾ã¨ã‚ã¦å‘¼ã³å‡ºã™ç”¨
 */
 void CStage::init(){
 
-	initStage();			//ƒXƒe[ƒW‚Ì‰Šú‰»
+	setDropOnJewel();					//è½ä¸‹ç‰©ã«å®çŸ³ã‚’ã‚»ãƒƒãƒˆ
 
-	setDropOnJewel();		//—‰º•¨‚ÌƒZƒbƒg
+	setFirstPoint();					//åˆæœŸä½ç½®ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 
-	Cdrop->setPosition();	//—‰º•¨‚ÌÀ•W‚ğ‰Šú‰»
+	Cdrop->setPosition(firstX, firstY);	//è½ä¸‹ç‰©ã®åº§æ¨™ã‚’åˆæœŸåŒ–
+
+	setDropOnStage();					//ã‚¹ãƒ†ãƒ¼ã‚¸ã«è½ä¸‹ç‰©ã‚’ã‚»ãƒƒãƒˆ
 
 }
+
+
+/*	makeCãƒˆ 2014/3/28
+draw
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ç”»é¢è¡¨ç¤º
+*/
+void CStage::draw(){
+	using namespace std;
+	
+	int width = stage->getSizeX();
+	int height = stage->getSizeY();
+
+	for (int y = 0; y < height; y++){
+		for (int x = 0; x < width; x++){
+
+			switch (stage->get(x, y)){
+			case SPACE:	cout << "ã€€"; break;
+			case BLOCK:	cout << "ï¼ƒ"; break;
+			case RED:	cout << "èµ¤"; break;
+			case YELLOW:cout << "é»„"; break;
+			case GREEN:	cout << "ç·‘"; break;
+			case BLUE:	cout << "é’"; break;
+			case ORANGE:cout << "æ©™"; break;
+			case PERPLE:cout << "ç´«"; break;
+			case ERROR:	cout << "ã‚¨"; break;
+			default:	cout << "ï¼Ÿ"; break;
+			}
+		}
+		cout << endl;
+	}
+}
+
+
+/*	makeCãƒˆ 2014/3/28
+ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã§ã®dropã‚’ç§»å‹•ã•ã›ã‚‹
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã«ç½®ã‹ã‚ŒãŸè½ä¸‹ç‰©ã‚’å…¨éƒ¨ç§»å‹•ã•ã›ã‚‹
+*/
+bool CStage::checkMove(int key){
+	
+	Cdrop->checkKey(key);
+	WAY way = NONE;
+	way = checkDropToStage(way);
+	if (way == NONE){ return false; }
+	move(way);
+	return true;
+}
+
+/*	makeCãƒˆ 2014/3/28
+ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã®nextå…ˆã‚’ç¢ºèª
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã«ç½®ã‹ã‚ŒãŸè½ä¸‹ç‰©ã‚’å…¨éƒ¨ç§»å‹•ã•ã›ã‚‹
+*/
+WAY CStage::checkDropToStage(WAY& way){
+	int dropX = Cdrop->getX(), dropY = Cdrop->getY();
+	int dX = Cdrop->getDx(), dY = Cdrop->getDy();
+	int x = Cdrop->getX(), y = Cdrop->getY();
+	int dropNumber = Cdrop->getdropNumber();
+	int nextX = dropX + dX, nextY = dropY + dY;
+	int stageWidth = stage->getSizeX(), stageHeight = stage->getSizeY();
+
+	if (dX != 0){
+		if (dX >0){//LEFT
+			for (int i = 0; i < dropNumber; i++){
+				int nextX = x + dX, nextY = y + dY + i;
+				if (1 > nextX || nextX >= (stageWidth - 1) ||
+					1 > nextY || nextY >= (stageHeight - 1)||
+					stage->get(nextX,nextY) != SPACE){
+
+					return NONE;
+				}
+			}
+			return LEFT;
+		}
+		else if (dX < 0){//RIGHT
+			for (int i = 0; i < dropNumber; i++){
+				int nextX = x + dX, nextY = y + dY + i;
+				if (1 > nextX || nextX >= (stageWidth - 1) ||
+					1 > nextY || nextY >= (stageHeight - 1) ||
+					stage->get(nextX, nextY) != SPACE){
+
+					return NONE;
+				}
+			}
+			return RIGHT;
+		}
+	}
+	else if (dY != 0){
+		if (dY > 0){//DOWN
+			int nextX = x + dX, nextY = y + dY + (dropNumber - 1);
+
+			if (1 > nextX || nextX >= (stageWidth - 1) ||
+				1 > nextY || nextY >= (stageHeight - 1) ||
+				stage->get(nextX, nextY) != SPACE){
+
+				return NONE;
+			}
+			else{
+				return DOWN;
+			}
+		}
+		else if (dY < 0){//UP
+			int nextX = x + dX, nextY = y + dY;
+
+			if (1 > nextX || nextX >= (stageWidth - 1) ||
+				1 > nextY || nextY >= (stageHeight - 1) ||
+				stage->get(nextX, nextY) != SPACE){
+
+				return NONE;
+			}
+			else{
+				return UP;
+			}
+		}
+	}
+	//throw "ãƒ‡ãƒ¼ã‚¿ãŒãã¡ã‚“ã¨å…¥ã£ã¦ã„ã¾ã›ã‚“";
+	return NONE;
+}
+/*	makeCãƒˆ 2014/3/28
+ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã§ã®dropã‚’ç§»å‹•ã•ã›ã‚‹
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+	ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã«ç½®ã‹ã‚ŒãŸè½ä¸‹ç‰©ã‚’å…¨éƒ¨ç§»å‹•ã•ã›ã‚‹
+*/
+void CStage::move(WAY way){
+
+	int dropX = Cdrop->getX(), dropY = Cdrop->getY();
+	int dX = Cdrop->getDx(), dY = Cdrop->getDy();
+	int nextX = dropX + dX, nextY = dropY + dY;
+	int dropNum = Cdrop->getdropNumber();
+
+	switch (way){
+	case UP:
+		for (int i = 0; i < dropNum; i++){
+			stage->swap(nextX, nextY + i, dropX, dropY + i);
+		}
+		Cdrop->setX(nextX), Cdrop->setY(nextY);
+		break;
+	case DOWN:
+		for (int i = (dropNum - 1); i >= 0; i--){
+			stage->swap(nextX, nextY + i, dropX, dropY + i);
+		}
+		Cdrop->setX(nextX), Cdrop->setY(nextY);
+		break;
+	case LEFT:
+		for (int i = 0; i < dropNum; i++){
+			stage->swap(nextX, nextY + i, dropX, dropY + i);
+		}
+		Cdrop->setX(nextX), Cdrop->setY(nextY);
+		break;
+	case RIGHT:
+		for (int i = 0; i < dropNum; i++){
+			stage->swap(nextX, nextY + i, dropX, dropY + i);
+		}
+		Cdrop->setX(nextX), Cdrop->setY(nextY);
+		break;
+	case NONE:
+		Cdrop->setX(dropX), Cdrop->setY(dropY);
+		break;
+	}
+}
+
+
+/*	makeCãƒˆ 2014/3/28
+ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã§ã®dropã®åˆæœŸä½ç½®ã‚»ãƒƒãƒˆ
+
+å¼•æ•°:ç„¡ã—
+æˆ»ã‚Šå€¤:ç„¡ã—
+å‚™è€ƒ:
+*/
+void CStage::setFirstPoint(){
+
+	int tmpX = stage->getSizeX();
+	int tmpY = Cdrop->getDammyHeight();
+
+	if (0 < tmpX && tmpX < INT_MAX &&
+		0 < tmpY && tmpY < INT_MAX
+		){
+		if (tmpX == 1){
+			firstX = tmpX;
+			firstY = tmpY;
+		}
+		else{
+			firstX = tmpX / 2;
+			firstY = tmpY;
+		}
+	}
+}
+
+bool CStage::freeDrop(){
+	WAY way = NONE;
+
+	Cdrop->freeDrop();
+	Cdrop->checkKey('s');
+	way = checkDropToStage(way);
+	if (way == NONE){ return false; }
+	move(way);
+	return true;
+}
+/*
+WAY way = NONE;
+way = Cdrop->checkMove(key);
+way = checkDropToStage(way);
+move(way);
+*/
