@@ -35,6 +35,7 @@ namespace MakeCto{
 	enum StateData{
 		INIT,
 		GAME,
+		CLEAR,
 	};
 
 
@@ -53,7 +54,7 @@ namespace MakeCto{
 		ORANGE,
 		PERPLE,
 		BLOCK = 99,
-		ERROR = -1,
+		ERROR_B = -1,
 	};
 
 	enum WAY{

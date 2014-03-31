@@ -1,5 +1,7 @@
 #include "CDrop.h"
 using namespace MakeCto;
+
+
 /*	makeCト 2014/3/28
 コンストラクタ
 
@@ -8,8 +10,8 @@ using namespace MakeCto;
 備考:
 	移動、差分は0で初期化しておいて後に出てくるinitで最セット
 	引数無しコンストラクタはデフォ値なので、
-	Common.hのデータで初期化
-	dropのオブジェクト(実態)を定義 中身は、CCellint型の配列データ　
+	m_ommon.hのデータで初期化
+	m_cellのオブジェクト(実態)を定義 中身は、CCellint型の配列データ　
 */
 CDrop::CDrop() :
 x(0), y(0), dX(0), dY(0), dammyHeight(defaultDammyHeight),
@@ -17,8 +19,9 @@ width(defaultDropWidth), height(defaultDropHeight),
 stageWidth(defaultStageWidth), stageHeight(defaultStageHeight),
 state(INIT), timer(0), dropNumber(defaultDropHeight){
 	
-	drop = new CCell<BLOCKDATA>(width, height);
+	m_cell = new CCell<BLOCKDATA>(width, height);
 }
+
 
 CDrop::CDrop(int dropX,int dropY) :
 x(0), y(0), dX(0), dY(0), dammyHeight(defaultDammyHeight),
@@ -26,18 +29,20 @@ width(dropX), height(dropY),
 stageWidth(defaultStageWidth), stageHeight(defaultStageHeight),
 state(INIT), timer(0), dropNumber(defaultDropHeight){
 
-	drop = new CCell<BLOCKDATA>(width, height);
+	m_cell = new CCell<BLOCKDATA>(width, height);
 }
+
+
 /*	makeCト 2014/3/28
 デストラクタ
 
 引数:無し
 戻り値:無し
 備考:
-	dropのオブジェクト(実態)を削除
+	m_cellのオブジェクト(実態)を削除
 */
 CDrop::~CDrop(){
-	delete drop;
+	delete m_cell;
 }
 
 
@@ -47,12 +52,12 @@ CDrop::~CDrop(){
 引数:int value:入れる色データ用
 戻り値:無し
 備考:
-	dropの配列データに宝石の色データを入れる
+	m_cellの配列データに宝石の色データを入れる
 */
 void CDrop::setDrop(int x, int y, BLOCKDATA value){
 
 	if (0 <= x && x <= width && 0 <= y && y <= height){
-		drop->set(x, y, value);
+		m_cell->set(x, y, value);
 	}
 	else{
 		throw "setDrop:x,yの値が範囲外を指しています。";
@@ -100,18 +105,18 @@ int CDrop::getdropNumber(){
 引数:
 戻り値:無し
 備考:
-	CStageからdropは呼べないので関数で呼べるようにする
+	CStageからm_cellは呼べないので関数で呼べるようにする
 */
 BLOCKDATA CDrop::getdrop(int x, int y){
-	int sizeX = drop->getSizeX();
-	int sizeY = drop->getSizeY();
+	int sizeX = m_cell->getSizeX();
+	int sizeY = m_cell->getSizeY();
 	if (0 <= x && x < sizeX && 0 <= y && y < sizeY){
-		return drop->get(x, y);
+		return m_cell->get(x, y);
 	}
 	else {
-		throw "getdrop:drop配列の範囲外を指しています。オーバーランですよ？";
+		throw "getdrop:m_cell配列の範囲外を指しています。オーバーランですよ？";
 	}
-	return ERROR;
+	return ERROR_B;
 }
 
 
@@ -121,7 +126,7 @@ BLOCKDATA CDrop::getdrop(int x, int y){
 引数:
 戻り値:WAY　WAY型の(上下左右)は入る
 備考:
-CStageからdropは呼べないので関数で呼べるようにする
+CStageからm_cellは呼べないので関数で呼べるようにする
 */
 int CDrop::checkKey(int key){
 

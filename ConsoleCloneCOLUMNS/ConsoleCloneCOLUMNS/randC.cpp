@@ -9,7 +9,7 @@ using namespace MakeCto;
 戻り値:無し
 備考:
 引数無しコンストラクタはデフォ値用なので、
-デフォの場合はCommon.hのデータで初期化
+デフォの場合はm_ommon.hのデータで初期化
 */
 randC::randC() :
 	min(minRand), max(maxRand), randNum(0){

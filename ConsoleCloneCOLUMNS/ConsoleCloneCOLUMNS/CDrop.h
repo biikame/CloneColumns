@@ -9,12 +9,12 @@ namespace MakeCto{
 	戻り値:無し
 	備考:
 	cellデータをnewする。
-	デフォの場合はCommon.hのデータで初期化
+	デフォの場合はm_ommon.hのデータで初期化
 	*/
 	class CDrop{
 	private:
 
-		CCell<BLOCKDATA>* drop;							//落ち物のオブジェクト。実態はCCellint型の配列
+		CCell<BLOCKDATA>* m_cell;							//落ち物のオブジェクト。実態はCCellint型の配列
 
 		int x, y;										//落ち物の座標
 		int dX, dY;										//差分

@@ -7,7 +7,7 @@ using namespace MakeCto;
 引数:無し
 戻り値:無し
 備考:
-	Common.hにあるデフォルトデータで設定
+	m_ommon.hにあるデフォルトデータで設定
 */
 Random::Random(){//:randC(minRand, maxRand) 書いてももいいし書かなくても。
 

@@ -4,7 +4,7 @@
 #include "Jewel.h"
 #include "Random.h"
 #include "Common.h"
-
+#include "CConsole.h"
 namespace MakeCto{
 	/*	makeCト 2014/3/28
 	ステージクラス
@@ -17,12 +17,17 @@ namespace MakeCto{
 
 	class CStage{
 	private:
-		CCell<BLOCKDATA>* stage;	//ステージのオブジェクト。実態はCCellint型の配列
-		CDrop* Cdrop;				//CDropクラスのオブジェクト。実態はCDropクラス本体
-		CJewel* Cjewel;				//CJewelクラスのオブジェクト。実態はCJewelクラス本体
+		
+		CCell<BLOCKDATA>* m_cell;	//ステージのオブジェクト。実態はCCellint型の配列
+		CCell<bool>* m_cellRecursive;//ステージのオブジェクト。実態はCCellbool型の配列
+		CDrop* m_drop;				//CDropクラスのオブジェクト。実態はCDropクラス本体
+		CJewel* m_jewel;			//CJewelクラスのオブジェクト。実態はCJewelクラス本体
 		Random* random;				//Randomクラスのオブジェクト。実態はRadomクラス本体
-
+		CConsole m_console;			//
 		int firstX, firstY;			//x,yの最初表示ポイント
+		BLOCKDATA recursiveData;	//再帰用データ
+		int deleteCounter;			//デリートの数用
+		bool deleteflag;			
 	public:
 		CStage();					//コンストラクタ
 		~CStage();					//デストラクタ
@@ -43,5 +48,22 @@ namespace MakeCto{
 
 		bool freeDrop();			//自由落下
 
+		void deleteCheck();			//消す処理
+
+		bool recursiveBlock(int x, int y, int dX, int dY);		//再帰的に確認
+
+		void initCellRecursive();
+
+		void deleteBlock();
+		void updateStage();
+
+		void recursiveStage(int x, int y, int dX, int dY);
+
+		void recursive();
+
+		bool getDeleteflag(){return deleteflag; }
+		void setDeleteflag(bool flag){ deleteflag = flag; }
+
+		bool clear();
 	};
 }

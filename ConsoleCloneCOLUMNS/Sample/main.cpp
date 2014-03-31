@@ -1,14 +1,7 @@
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+
 int main(){
+	printf("%d", 1 - (-1));
 
-	int flag = -1;
-
-	if (flag){
-		cout << "‚±‚±‚±‚±‚±‚±‚Á‚±‚±";
-	}
-	else{
-		cout <<"fjeiajfijaeifji";
-	}
 	return 0;
 }

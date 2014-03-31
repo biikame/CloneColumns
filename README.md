@@ -1,4 +1,4 @@
-﻿Clone COLUMNS 
+﻿m_lone COLUMNS 
 =============================
 C++言語コンソールで、COLUMNS作成します(勉強用に)
 

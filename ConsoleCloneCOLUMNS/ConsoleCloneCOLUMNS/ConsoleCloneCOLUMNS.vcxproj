@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CConsole.cpp" />
     <ClCompile Include="CDrop.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="Jewel.cpp" />
@@ -20,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCell.h" />
+    <ClInclude Include="CConsole.h" />
     <ClInclude Include="CDrop.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="CStage.h" />

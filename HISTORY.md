@@ -9,9 +9,9 @@
  * ステージ表示の追加
  * 
  備考<br>
- Jewel,ControlStage,ViewStageクラスの
- データを元にColumnsで作成していこうか、
- ControlStageにJewelに持っていって色々するか考え中。
+ Jewel,m_ontrolStage,ViewStageクラスの
+ データを元にm_olumnsで作成していこうか、
+ m_ontrolStageにJewelに持っていって色々するか考え中。
   ##0.2.1(2014/03/29)
  ### 各クラス作成part2
  * 

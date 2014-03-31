@@ -7,6 +7,7 @@
     <ClCompile Include="CDrop.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="randC.cpp" />
+    <ClCompile Include="CConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -16,6 +17,7 @@
     <ClInclude Include="CDrop.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="randC.h" />
+    <ClInclude Include="CConsole.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\HISTORY.md" />

@@ -36,7 +36,7 @@ namespace MakeCto{
 		戻り値:無し
 		備考:
 		cellデータをnewする。
-		デフォの場合はCommon.hのデータで初期化
+		デフォの場合はm_ommon.hのデータで初期化
 		*/
 		CCell() :
 			sizeX(maxX), sizeY(maxY){
@@ -86,7 +86,7 @@ namespace MakeCto{
 			else{
 				throw "get:範囲外にアクセスしています";
 			}
-			return ERROR;
+			return ERROR_B;
 		}
 		/*	makeCト 2014/3/28
 		cellのデータセット

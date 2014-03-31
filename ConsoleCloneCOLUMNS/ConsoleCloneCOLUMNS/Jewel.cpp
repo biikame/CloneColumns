@@ -53,5 +53,5 @@ BLOCKDATA CJewel::getJewelColor(){
 	else{
 		throw "getJewelColor:–³‚¢F‚Ì•óÎ‚ğƒQƒbƒg‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½";
 	}
-	return ERROR;
+	return ERROR_B;
 }

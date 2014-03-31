@@ -11,10 +11,8 @@ int main(){
 	try{
 		stage->initStage();						//ステージの初期化
 		while(1){
-			system("cls");
+			//system("cls");
 
-			
-			
 			switch (state){
 			case INIT:
 				stage->init();
@@ -24,17 +22,26 @@ int main(){
 				int key = 0;
 				stage->draw();
 
-				if (kbhit()){
+				//if (kbhit()){
 					key = _getch();
-				}
+				//}
 				stage->checkMove(key);
+
 				if (!stage->freeDrop()){
+					do{
+						stage->setDeleteflag(false);
+						stage->recursive();
+						stage->updateStage();
+					} while (stage->getDeleteflag());
+					
 					chgeneState(state, INIT);
 				}
 				break;
 			}
 		}
+		//cout << "ゲーム終了" << endl;
 	}
+	
 	catch (char* err){
 		cout << "エラー" << err << endl;
 	}
